@@ -1,6 +1,7 @@
--- Auto-generated from schema-map-mysql.psd1 (map@62c9c93)
+-- Auto-generated from schema-map-mysql.psd1 (map@mtime:2025-11-27T15:13:14Z)
 -- engine: mysql
 -- table:  global_id_registry
+
 CREATE TABLE IF NOT EXISTS global_id_registry (
   gid CHAR(26) PRIMARY KEY,              -- ULID
   guid CHAR(36) NULL,                    -- UUID (text)

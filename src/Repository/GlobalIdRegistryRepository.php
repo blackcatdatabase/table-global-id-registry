@@ -43,7 +43,7 @@ final class GlobalIdRegistryRepository implements RepoContract, KeysetRepoContra
 
     // --- INSERT / BULK -------------------------------------------------------
 
-    public function insert(array #[\SensitiveParameter] $row): void {
+    public function insert(#[\SensitiveParameter] array $row): void {
         $row = $this->filterCols($this->normalizeInputRow($row));
         if (!$row) return;
 
@@ -107,13 +107,13 @@ final class GlobalIdRegistryRepository implements RepoContract, KeysetRepoContra
     }
 
     /** Standard upsert – preserves soft-delete (no revive). */
-    public function upsert(array #[\SensitiveParameter] $row): void
+    public function upsert(#[\SensitiveParameter] array $row): void
     {
         $this->doUpsert($row, false);
     }
 
     /** Upsert that revives soft-delete (sets deleted_at = NULL on conflict). */
-    public function upsertRevive(array #[\SensitiveParameter] $row): void
+    public function upsertRevive(#[\SensitiveParameter] array $row): void
     {
         $this->doUpsert($row, true);
     }
@@ -216,7 +216,7 @@ final class GlobalIdRegistryRepository implements RepoContract, KeysetRepoContra
 
     // --- UPDATE / DELETE / RESTORE ------------------------------------------
 
-    public function updateById(int|string|array $id, array #[\SensitiveParameter] $row): int {
+    public function updateById(int|string|array $id, #[\SensitiveParameter] array $row): int {
         $row = $this->normalizeInputRow($row);
 
         $tbl   = Ident::qi($this->db, Definitions::table());
@@ -428,7 +428,7 @@ final class GlobalIdRegistryRepository implements RepoContract, KeysetRepoContra
         $sql = "SELECT * FROM {$tbl} WHERE {$where}";
         if ($guard !== '1=1') { $sql .= ' AND ' . $guard; }
 
-        $dialect = $this->db->getDialect(); // 'postgres' | 'mysql' | 'mariadb' ...
+        $dialect = $this->db->dialect(); // 'postgres' | 'mysql' | 'mariadb' ...
         $for = 'FOR UPDATE';
         if ($strength === 'share') {
             if ($dialect === 'postgres' || $dialect === 'mysql') { $for = 'FOR SHARE'; }
@@ -486,21 +486,6 @@ final class GlobalIdRegistryRepository implements RepoContract, KeysetRepoContra
     /** @return int|string|null */
     public function getIdByEntityTableAndEntityPk(string $entityTable, string $entityPk) {
         $row = $this->getByEntityTableAndEntityPk($entityTable, $entityPk);
-        return $row ? ($row['gid'] ?? null) : null;
-    }
-    /** @return array<string,mixed>|\BlackCat\Database\Packages\GlobalIdRegistry\Dto\GlobalIdRegistryDto|null */
-    public function getByGid(string $gid, bool $asDto = false): array|\BlackCat\Database\Packages\GlobalIdRegistry\Dto\GlobalIdRegistryDto|null {
-        $row = $this->getByUnique([ 'gid' => $gid ]);
-        if (!$asDto || !$row) return $row;
-        return \BlackCat\Database\Packages\GlobalIdRegistry\Mapper\GlobalIdRegistryDtoMapper::fromRow($row);
-    }
-    public function existsByGid(string $gid): bool {
-        $where = 't.' . Ident::q($this->db, 'gid') . ' = :uniq_gid';
-        return $this->exists($where, [ 'uniq_gid' => $gid ]);
-    }
-    /** @return int|string|null */
-    public function getIdByGid(string $gid) {
-        $row = $this->getByGid($gid);
         return $row ? ($row['gid'] ?? null) : null;
     }
 

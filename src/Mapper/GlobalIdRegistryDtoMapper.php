@@ -17,7 +17,7 @@ use BlackCat\Database\Support\DtoHydrator;
 final class GlobalIdRegistryDtoMapper
 {
     /** @var array<string,string> Column -> DTO property */
-    private const COL_TO_PROP = [ 'entity_table' => 'entityTable', 'entity_pk' => 'entityPk', 'created_at' => 'createdAt' ];
+    private const COL_TO_PROP = [ 'gid' => 'gid', 'guid' => 'guid', 'entity_table' => 'entityTable', 'entity_pk' => 'entityPk', 'created_at' => 'createdAt' ];
 
     /** @var string[] */
     private const BOOL_COLS   = [];
