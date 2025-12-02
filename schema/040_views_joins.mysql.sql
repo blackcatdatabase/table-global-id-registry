@@ -1,7 +1,7 @@
--- Auto-generated from joins-mysql.psd1 (map@mtime:2025-11-27T17:49:37Z)
+-- Auto-generated from joins-mysql.yaml (map@94ebe6c)
 -- engine: mysql
--- view:   global_id_registry_map
--- Global→local id registry (legacy map alias)
+-- view:   global_id_map
+
 CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_global_id_map AS
 SELECT
   gid,
