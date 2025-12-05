@@ -1,6 +1,6 @@
 -- Auto-generated from joins-postgres.yaml (map@85230ed)
 -- engine: postgres
--- view:   global_id_registry_map
+-- view:   global_id_map
 
 -- Globalâ†’local id registry (legacy map alias)
 CREATE OR REPLACE VIEW vw_global_id_map AS
