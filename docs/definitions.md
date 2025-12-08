@@ -5,11 +5,11 @@ ULID/UUID registry for mapping global ids to local tables.
 ## Columns
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
-| created_at |  | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
-| entity_pk |  | NO |  | Local primary key value. |
+| created_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
+| entity_pk | VARCHAR(64) | NO |  | Local primary key value. |
 | entity_table | VARCHAR(64) | NO |  | Local table name. |
 | gid | CHAR(26) | NO |  | Primary ULID identifier. |
-| guid | UUID | YES |  | Optional UUID representation. |
+| guid | CHAR(36) | YES |  | Optional UUID representation. |
 
 ## Engine Details
 
@@ -46,7 +46,7 @@ Indexes:
 ## Views
 | View | Engine | Flags | File |
 | --- | --- | --- | --- |
-| vw_global_id_map | mysql | algorithm=MERGE, security=INVOKER | [packages\global-id-registry\schema\040_views_joins.mysql.sql](https://github.com/blackcatacademy/blackcat-database/packages/global-id-registry/schema/040_views_joins.mysql.sql) |
-| vw_global_id_registry | mysql | algorithm=MERGE, security=INVOKER | [packages\global-id-registry\schema\040_views.mysql.sql](https://github.com/blackcatacademy/blackcat-database/packages/global-id-registry/schema/040_views.mysql.sql) |
-| vw_global_id_map | postgres |  | [packages\global-id-registry\schema\040_views_joins.postgres.sql](https://github.com/blackcatacademy/blackcat-database/packages/global-id-registry/schema/040_views_joins.postgres.sql) |
-| vw_global_id_registry | postgres |  | [packages\global-id-registry\schema\040_views.postgres.sql](https://github.com/blackcatacademy/blackcat-database/packages/global-id-registry/schema/040_views.postgres.sql) |
+| vw_global_id_map | mysql | algorithm=MERGE, security=INVOKER | [schema\040_views_joins.mysql.sql](schema\040_views_joins.mysql.sql) |
+| vw_global_id_registry | mysql | algorithm=MERGE, security=INVOKER | [schema\040_views.mysql.sql](schema\040_views.mysql.sql) |
+| vw_global_id_map | postgres |  | [schema\040_views_joins.postgres.sql](schema\040_views_joins.postgres.sql) |
+| vw_global_id_registry | postgres |  | [schema\040_views.postgres.sql](schema\040_views.postgres.sql) |
