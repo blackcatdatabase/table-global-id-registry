@@ -9,7 +9,7 @@ ULID/UUID registry for mapping global ids to local tables.
 | entity_pk | VARCHAR(64) | NO |  | Local primary key value. |
 | entity_table | VARCHAR(64) | NO |  | Local table name. |
 | gid | CHAR(26) | NO |  | Primary ULID identifier. |
-| guid | CHAR(36) | YES |  | Optional UUID representation. |
+| guid | mysql: CHAR(36) / postgres: UUID | YES |  | Optional UUID representation. |
 
 ## Engine Details
 
