@@ -5,11 +5,11 @@ ULID/UUID registry for mapping global ids to local tables.
 ## Columns
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
-| created_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
 | entity_pk | VARCHAR(64) | NO |  | Local primary key value. |
-| entity_table | VARCHAR(64) | NO |  | Local table name. |
-| gid | CHAR(26) | NO |  | Primary ULID identifier. |
 | guid | mysql: CHAR(36) / postgres: UUID | YES |  | Optional UUID representation. |
+| entity_table | VARCHAR(64) | NO |  | Local table name. |
+| created_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
+| gid | CHAR(26) | NO |  | Primary ULID identifier. |
 
 ## Engine Details
 
