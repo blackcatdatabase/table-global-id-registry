@@ -41,11 +41,11 @@ final class Criteria extends BaseCriteria
         return [ 'gid', 'guid', 'entity_table', 'entity_pk' ];
     }
 
-/** Columns allowed in ORDER BY (falls back to filterable() when empty). */
-protected function sortable(): array
-{
-    return [ 'gid', 'guid', 'entity_table', 'entity_pk', 'created_at' ];
-}
+    /** Columns allowed in ORDER BY (falls back to filterable() when empty). */
+    protected function sortable(): array
+    {
+        return [ 'gid', 'guid', 'entity_table', 'entity_pk', 'created_at' ];
+    }
 
     /**
      * Whitelist of joinable entities (for safe ->join() usage):
