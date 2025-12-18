@@ -1,0 +1,23 @@
+{
+  "tables": {
+    "global_id_registry": {
+      "columns": {
+        "created_at": {
+          "strategy": "passthrough"
+        },
+        "entity_pk": {
+          "strategy": "passthrough"
+        },
+        "entity_table": {
+          "strategy": "passthrough"
+        },
+        "gid": {
+          "strategy": "passthrough"
+        },
+        "guid": {
+          "strategy": "passthrough"
+        }
+      }
+    }
+  }
+}
